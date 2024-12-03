@@ -1,0 +1,26 @@
+[alias]
+    co = checkout
+    ci = commit
+    b = branch
+    st = status
+    cp = cherry-pick
+
+[color "status"]
+    branch = "green bold"
+    added = green
+    changed = cyan
+    deleted = red
+    untracked = magenta
+
+[color "diff"]
+    meta = "blue bold"
+
+[color "branch"]
+    current = "green bold"
+
+[color]
+    branch = true
+    ui = true
+
+[core]
+    editor = mcedit
