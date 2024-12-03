@@ -1,0 +1,10 @@
+{
+    "editor.rulers": [ 80, 100, 120 ],
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.sideBar.location": "right",
+    "window.customTitleBarVisibility": "auto",
+    "window.newWindowProfile": "Default",
+    "window.dialogStyle": "custom",
+    "window.titleBarStyle": "custom",
+    "files.trimTrailingWhitespace": true
+}
