@@ -4,6 +4,7 @@
     b = branch
     st = status
     cp = cherry-pick
+    oneline = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as %Creset%C(white)%s'"
 
 [color "status"]
     branch = "green bold"
@@ -24,3 +25,5 @@
 
 [core]
     editor = mcedit
+[init]
+	defaultBranch = master
