@@ -1,9 +1,12 @@
 [alias]
     co = checkout
     ci = commit
+    amci = "commit --amend"
     b = branch
     st = status
     cp = cherry-pick
+    wdiff = "diff --word-diff"
+    diffc = "diff --cached"
     oneline = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as %Creset%C(white)%s'"
 
 [color "status"]
@@ -25,5 +28,6 @@
 
 [core]
     editor = mcedit
+
 [init]
 	defaultBranch = master
