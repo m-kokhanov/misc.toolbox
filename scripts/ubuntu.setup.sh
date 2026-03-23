@@ -9,6 +9,9 @@ cGreen="\033[32m"
 cGreenBrightBold="\033[1;92m"
 cGreenBright="\033[92m"
 
+cGrayBold="\033[1;38;5;250m"
+cGray="\033[38;5;250m"
+
 cYellowBold="\033[1;33m"
 cYellow="\033[33m"
 cYellowBrightBold="\033[1;93m"
@@ -27,22 +30,37 @@ cRedBright="\033[91m"
 # -----------------------------------------------------------------------------
 
 install_package() {
-    _package="${1}";
+    local _package=$1;
 
-    echo -e "[ ${cYellowBrightBold}INSTALLING${cClear} ]: ${cGreenBold}${_package}${cBlueBright}"
+    echo -e "[ ${cYellowBright}INSTALLING${cClear} ]: ${cGreen}${_package}${cBlueBright}"
 
-    apt-get install -y $_package
+    sudo apt-get install -y $_package
 
-    echo -e "${cClear}[ ${cGreenBold}DONE${cClear} ]"
+    echo -e "${cClear}[ ${cGreen}FINISHED${cClear} ]"
     echo ""
 }
 
 # -----------------------------------------------------------------------------
 
+echo -e "${cGrayBold}This setup requires administrator privileges (sudo).${cClear}"
+
+if ! sudo -v; then
+    echo -e "[ ${cRedBrightBold}FAILURE${cClear} ] ${cRedBright}Failed to obtain sudo access. Exiting.${cClear}"
+    exit 1
+fi
+
+# -----------------------------------------------------------------------------
+
+echo ""
+echo -e "[ ${cYellowBrightBold}UTILS & SOFTWARE${cClear} ] Installing"
 echo ""
 
-install_package "mc htop xclip"
-install_package "gnome-tweaks dconf-editor"
-install_package "vlc"
+install_package "mc htop tree xclip lm-sensors net-tools unzip zip"
+install_package "git wget curl"
+install_package "gnome-tweaks" # [?] dconf-editor
+install_package "vlc ffmpeg"
+
+echo -e "[ ${cGreenBold}DONE${cClear} ]"
+echo ""
 
 # -----------------------------------------------------------------------------
