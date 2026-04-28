@@ -60,7 +60,7 @@ fi
 # -----------------------------------------------------------------------------
 
 echo ""
-echo -e "[ ${cYellowBrightBold}UTILS & SOFTWARE${cClear} ] Installing"
+echo -e "[ ${cYellowBrightBold}UTILS & SOFTWARE${cClear} ] Installing..."
 echo ""
 
 install_package "mc htop tree xclip lm-sensors net-tools unzip zip"
@@ -68,6 +68,61 @@ install_package "git wget curl"
 install_package "gnome-tweaks" # [?] dconf-editor
 install_package "vlc ffmpeg"
 
+echo -e "[ ${cGreenBold}DONE${cClear} ]"
+echo ""
+
+# -----------------------------------------------------------------------------
+
+gnome_configure() {
+    local schema=$1
+    local key=$2
+    local value=$3
+
+    local current=$( gsettings get "${schema}" "${key}" )
+
+    echo "${schema} ${key} ${current}"
+
+    if [[ true = "$DEBUG" ]];
+    then
+        debug_print gsettings set $schema $key "${value}"
+    else
+        gsettings set ${schema} ${key} "${value}"
+    fi
+}
+
+# -----------------------------------------------------------------------------
+
+echo ""
+echo -e "[ ${cYellowBrightBold}GNOME & TWEAKS${cClear} ] Setup..."
+echo ""
+
+
+# dock
+gnome_configure org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
+gnome_configure org.gnome.shell.extensions.dash-to-dock dock-position "'LEFT'"
+gnome_configure org.gnome.shell.extensions.dash-to-dock show-trash true
+
+
+# window management
+gnome_configure org.gnome.mutter center-new-windows true
+
+
+# desktop / workspaces
+gnome_configure org.gnome.mutter dynamic-workspaces false
+gnome_configure org.gnome.mutter workspaces-only-on-primary false
+gnome_configure org.gnome.desktop.wm.preferences num-workspaces 5
+
+
+# keyboard
+gnome_configure org.gnome.desktop.peripherals.keyboard delay "uint32 340"
+gnome_configure org.gnome.desktop.peripherals.keyboard repeat-interval "uint32 20"
+
+
+# update notifications
+gnome_configure com.ubuntu.update-notifier no-show-notifications true
+gnome_configure com.ubuntu.update-notifier regular-auto-launch-interval 90
+
+echo ""
 echo -e "[ ${cGreenBold}DONE${cClear} ]"
 echo ""
 
