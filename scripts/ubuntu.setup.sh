@@ -42,7 +42,12 @@ install_package() {
 
     echo -e "[ ${cYellowBright}INSTALLING${cClear} ]: ${cGreen}${_package}${cBlueBright}"
 
-    sudo apt-get install -y $_package
+    if [[ true = "$DEBUG" ]];
+    then
+        debug_print sudo apt-get install y $_package
+    else
+        echo sudo apt-get install -y $_package
+    fi
 
     echo -e "${cClear}[ ${cGreen}FINISHED${cClear} ]"
     echo ""
