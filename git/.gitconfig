@@ -7,8 +7,10 @@
     cp = cherry-pick
     wdiff = "diff --word-diff"
     diffc = "diff --cached"
-    oneline = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as %Creset%C(white)%s'"
     ll = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as %Creset%C(white)%s'"
+    lln = "ll --name-status"
+    tree = "ll --graph"
+    oneline = "ll"
 
 [color "status"]
     branch = "green bold"
