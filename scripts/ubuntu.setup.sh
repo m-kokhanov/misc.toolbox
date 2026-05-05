@@ -85,7 +85,7 @@ gnome_configure() {
 
     local current=$( gsettings get "${schema}" "${key}" )
 
-    echo "${schema} ${key} ${current}"
+    echo -e "${cYellowBright}${schema}${cClear} ${cYellowBrightBold}${key} ${cGreen}${current}${cClear}"
 
     if [[ true = "$DEBUG" ]];
     then
@@ -105,23 +105,34 @@ echo ""
 # dock
 gnome_configure org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
 gnome_configure org.gnome.shell.extensions.dash-to-dock dock-position "'LEFT'"
+gnome_configure org.gnome.shell.extensions.dash-to-dock show-show-apps-button true
 gnome_configure org.gnome.shell.extensions.dash-to-dock show-trash true
 
+gnome_configure org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted true
+gnome_configure org.gnome.shell.extensions.dash-to-dock show-mounts-network true
+
+gnome_configure org.gnome.shell.extensions.dash-to-dock isolate-monitors false
+gnome_configure org.gnome.shell.extensions.dash-to-dock isolate-workspaces true
+
+echo ""
 
 # window management
 gnome_configure org.gnome.mutter center-new-windows true
 
+echo ""
 
 # desktop / workspaces
 gnome_configure org.gnome.mutter dynamic-workspaces false
 gnome_configure org.gnome.mutter workspaces-only-on-primary false
 gnome_configure org.gnome.desktop.wm.preferences num-workspaces 5
 
+echo ""
 
 # keyboard
 gnome_configure org.gnome.desktop.peripherals.keyboard delay "uint32 340"
 gnome_configure org.gnome.desktop.peripherals.keyboard repeat-interval "uint32 20"
 
+echo ""
 
 # update notifications
 gnome_configure com.ubuntu.update-notifier no-show-notifications true
