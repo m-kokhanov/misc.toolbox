@@ -68,10 +68,11 @@ fi
 
 # --- Exclude patterns ---
 EXCLUDES=(
-  "*.DS_Store"
-  "__MACOSX/*"
-  ".Spotlight-V100/*"
-  ".Trashes/*"
+	"*.DS_Store"
+	"*/.localized"
+	"__MACOSX/*"
+	".Spotlight-V100/*"
+	".Trashes/*"
 )
 
 # --- Create archive ---
