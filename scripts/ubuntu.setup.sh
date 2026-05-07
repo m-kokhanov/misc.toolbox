@@ -72,6 +72,27 @@ install_package() {
 
 # -----------------------------------------------------------------------------
 
+install_vagrant() {
+    print_subject "PREPARING" "vagrant installation..."
+
+    # wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    # echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    sudo apt update
+    echo ""
+
+    install_package "vagrant"
+
+    local result=$( vagrant -v 2>&1 1>/dev/tty )
+
+    if [ $? -ne 0 ]; then
+        echo "${cRed}$result${cClear}"
+    fi
+
+    print_success "FINISHED"
+}
+
+# -----------------------------------------------------------------------------
+
 echo -e "${cGrayBold}This setup requires administrator privileges (sudo).${cClear}"
 
 if ! sudo -v; then
@@ -86,9 +107,11 @@ echo -e "[ ${cYellowBrightBold}UTILS & SOFTWARE${cClear} ] Installing..."
 echo ""
 
 install_package "mc htop tree xclip lm-sensors net-tools unzip zip"
-install_package "git wget curl"
+install_package "git wget curl gpg"
 install_package "gnome-tweaks" # [?] dconf-editor
 install_package "vlc ffmpeg"
+
+install_vagrant
 
 echo -e "[ ${cGreenBold}DONE${cClear} ]"
 echo ""
