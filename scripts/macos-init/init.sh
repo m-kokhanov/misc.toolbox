@@ -25,6 +25,17 @@ cRedBrightBold="\033[1;91m"
 cRedBright="\033[91m"
 
 # -----------------------------------------------------------------------------
+# KEYBOARD & TRACKPAD
+# -----------------------------------------------------------------------------
+
+echo -e "[ ${cGreenBright}KEYBOARD${cClear} ] keypress delay & repeat";
+
+defaults write -g InitialKeyRepeat -int 15
+defaults write -g KeyRepeat -int 2
+
+killall cfprefsd 2>/dev/null || true
+
+# -----------------------------------------------------------------------------
 # enable DOCK auto-hide, and set the animations to minimal values
 # -----------------------------------------------------------------------------
 
