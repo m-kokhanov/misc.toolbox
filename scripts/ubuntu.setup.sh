@@ -35,22 +35,39 @@ debug_print() {
     echo -e "${cYellowBright}[ cmd ]: $@${cClear}"
 }
 
+print_subject() {
+    local topic=$1;
+    local message=$2;
+    echo -e "${cClear}[ ${cYellowBright}${topic}${cClear} ]: ${cGreen}${message}${cBlueBright}"
+}
+
+print_success() {
+    local summary=$1;
+    echo -e "${cClear}[ ${cGreen}${summary}${cClear} ]"
+    echo ""
+}
+
+print_failure() {
+    local topic=$1
+    local message=$2
+    echo -e "[ ${cRedBrightBold}${topic}${cClear} ] ${cRedBright}${message}${cClear}"
+}
+
 # -----------------------------------------------------------------------------
 
 install_package() {
     local _package=$1;
 
-    echo -e "[ ${cYellowBright}INSTALLING${cClear} ]: ${cGreen}${_package}${cBlueBright}"
+    print_subject "INSTALLING" "${_package}"
 
     if [[ true = "$DEBUG" ]];
     then
         debug_print sudo apt-get install y $_package
     else
-        echo sudo apt-get install -y $_package
+        sudo apt-get install -y $_package
     fi
 
-    echo -e "${cClear}[ ${cGreen}FINISHED${cClear} ]"
-    echo ""
+    print_success "FINISHED"
 }
 
 # -----------------------------------------------------------------------------
@@ -58,7 +75,7 @@ install_package() {
 echo -e "${cGrayBold}This setup requires administrator privileges (sudo).${cClear}"
 
 if ! sudo -v; then
-    echo -e "[ ${cRedBrightBold}FAILURE${cClear} ] ${cRedBright}Failed to obtain sudo access. Exiting.${cClear}"
+    print_failure "FAILURE" "Failed to obtain sudo access. Exiting..."
     exit 1
 fi
 
