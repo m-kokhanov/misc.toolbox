@@ -8,9 +8,10 @@
     wdiff = "diff --word-diff"
     diffc = "diff --cached"
     logp = "log -p"
-    ll = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as%C(reset)%C(white)%s'"
-    dl = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as%C(auto)%d%C(reset)%C(white)%s'"
+    ll = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as%C(reset) %C(white)%s'"
+    dl = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as%C(auto)%d%C(reset) %C(white)%s'"
     lln = "ll --name-status"
+    tree = "ll --graph"
     oneline = "ll"
     oneline-ns = "lln'"
 
