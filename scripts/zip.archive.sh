@@ -94,5 +94,12 @@ else
   )
 fi
 
-echo "Created archive:"
+echo ""
+echo -e "${cYellowBrightBold}Created archive:${cClear}"
 echo "  $OUTPUT"
+echo ""
+
+# -----------------------------------------------------------------------------
+
+echo -e "[ ${cGreenBrightBold}DONE${cClear} ]"
+echo ""
