@@ -29,6 +29,7 @@
 [color]
     branch = true
     ui = true
+    interactive = auto
 
 [core]
     editor = mcedit
