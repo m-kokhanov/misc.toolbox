@@ -24,6 +24,21 @@ cRed="\033[31m"
 cRedBrightBold="\033[1;91m"
 cRedBright="\033[91m"
 
+cMagentaBold="\033[1;35m"
+cMagenta="\033[35m"
+cMagentaBrightBold="\033[1;95m"
+cMagentaBright="\033[95m"
+
+cCyanBold="\033[1;36m"
+cCyan="\033[36m"
+cCyanBrightBold="\033[1;96m"
+cCyanBright="\033[96m"
+
+cWhiteBold="\033[1;37m"
+cWhite="\033[37m"
+cWhiteBrightBold="\033[1;97m"
+cWhiteBright="\033[97m"
+
 # -----------------------------------------------------------------------------
 
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
