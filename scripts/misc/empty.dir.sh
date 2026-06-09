@@ -65,9 +65,9 @@ check_directory() {
 
 echo ""
 
-check_directory "${HOME}/.BACKUP.TAKEOUT"
+check_directory "${HOME}/BACKUP.TAKEOUT"
 check_directory "${HOME}/projects"
-check_directory "${HOME}/projects.repository"k
+check_directory "${HOME}/projects.repository"
 
 echo ""
 check_directory "${HOME}/VirtualBox VMs"
