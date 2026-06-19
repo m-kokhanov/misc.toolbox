@@ -86,7 +86,10 @@ fetch_in_folder() {
 
 echo ""
 
-fetch_in_folder "${__WORKDIR}"
+for f in "${__DIR}"/*/; do
+    [[ -d "$f" ]] || continue
+    fetch_in_folder "$f"
+done
 
 # -----------------------------------------------------------------------------
 
