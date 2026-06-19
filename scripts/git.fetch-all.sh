@@ -65,7 +65,7 @@ fetch_in_folder() {
     local name=$( basename "$1" )
 
     echo -e "[ ${cGreenBrightBold}PROCESSING${cClear} ]: ${cGreenBrightBold}${name}${cClear}"
-    echo -e "${cClear}  in: ${workdir}${cClear}"
+    echo -e "${cClear}  in: ${cWhite}${workdir}${cClear}"
     echo ""
 
     for f in "${workdir}/"*/;
@@ -76,7 +76,7 @@ fetch_in_folder() {
         then
             local dName=$( basename "$f" )
             echo -e "[ ${cYellowBright}FETCHING${cClear} ]: ${cYellowBrightBold}${dName}${cClear}"
-            echo -e "${cClear}  in: ${f} ${cBlue}"
+            echo -e "${cClear}  in: ${cWhite}${f}${cBlue}"
 
             fetch_in "$f"
 
@@ -90,7 +90,10 @@ fetch_in_folder() {
 
 echo ""
 
-fetch_in_folder "${__WORKDIR}"
+for f in "${__WORKDIR}"/*/; do
+    [[ -d "$f" ]] || continue
+    fetch_in_folder "$f"
+done
 
 # -----------------------------------------------------------------------------
 
