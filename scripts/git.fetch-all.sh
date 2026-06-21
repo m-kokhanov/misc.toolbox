@@ -46,6 +46,12 @@ __FILTER="$1"
 
 # -----------------------------------------------------------------------------
 
+print_info() {
+    echo -e "[${cWhiteBold} INFO ${cClear}]: ${cWhite}$@${cClear}"
+}
+
+# -----------------------------------------------------------------------------
+
 filter_by() {
     local needle="$1"
     local haystack="$(basename "$2" )"
@@ -65,10 +71,10 @@ fetch_in_folder() {
     local name=$( basename "$1" )
 
     echo -e "[ ${cGreenBrightBold}PROCESSING${cClear} ]: ${cGreenBrightBold}${name}${cClear}"
-    echo -e "${cClear}  in: ${cWhite}${workdir}${cClear}"
+    echo -e "${cClear}  in: ${cWhite}${workdir}/${cClear}"
     echo ""
 
-    for f in "${workdir}/"*/;
+    for f in "${workdir}"/*;
     do
         filter_by "$__FILTER" "$f" || continue
 
@@ -76,7 +82,7 @@ fetch_in_folder() {
         then
             local dName=$( basename "$f" )
             echo -e "[ ${cYellowBright}FETCHING${cClear} ]: ${cYellowBrightBold}${dName}${cClear}"
-            echo -e "${cClear}  in: ${cWhite}${f}${cBlue}"
+            echo -e "${cClear}  in: ${cWhite}${f}/${cBlue}"
 
             fetch_in "$f"
 
@@ -90,7 +96,7 @@ fetch_in_folder() {
 
 echo ""
 
-for f in "${__WORKDIR}"/*/; do
+for f in "${__WORKDIR}"/*; do
     [[ -d "$f" ]] || continue
     fetch_in_folder "$f"
 done
