@@ -7,6 +7,7 @@
     cp = cherry-pick
     wdiff = "diff --word-diff"
     diffc = "diff --cached"
+    rl = "reflog --format='[ %cd ] %C(auto)%h %gD: %gs' --date=short"
     logp = "log -p"
     ll = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as%C(reset) %C(white)%s'"
     dl = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as%C(auto)%d%C(reset) %C(white)%s'"
