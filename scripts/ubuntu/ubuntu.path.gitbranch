@@ -7,7 +7,7 @@ git_branch() {
         || git rev-parse --short HEAD 2>/dev/null
 }
 
-GPART='$(b=$(git_branch); [ -n "$b" ] && printf " \033[01;35mgit:(\033[01;31m%s\033[01;35m)\033[00m" "$b")'
+GPART='$(b=$(git_branch); [ -n "$b" ] && printf " \[\033[01;35m\]git:(\[\033[01;31m\]%s\[\033[01;35m\])\[\033[00m\]" "$b")'
 HPART='${debian_chroot:+($debian_chroot)}'
 WPART='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
 
