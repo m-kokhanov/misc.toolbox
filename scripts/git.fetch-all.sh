@@ -39,10 +39,48 @@ cWhite="\033[37m"
 cWhiteBrightBold="\033[1;97m"
 cWhiteBright="\033[97m"
 
+cBlackBold="\033[1;30m"
+cBlack="\033[30m"
+cBlackBrightBold="\033[1;90m"
+cBlackBright="\033[90m"
+
+# -----------------------------------------------------------------------------
+
+print_success() {
+    local SUMMARY="$1"
+    local MSG="$2"
+
+    echo -e "${cClear}[${cGreenBrightBold} ${SUMMARY} ${cClear}] ${cGreenBright}${MSG}${cClear}"
+}
+
+print_error() {
+    local SUMMARY="$1"
+    local MSG="$2"
+
+    echo -e "${cClear}[${cRedBrightBold} ${SUMMARY} ${cClear}] ${cRedBright}${MSG}${cClear}"
+}
+
+print_warn() {
+    local SUMMARY="$1"
+    local MSG="$2"
+
+    echo -e "${cClear}[${cYellowBrightBold} ${SUMMARY} ${cClear}] ${cYellowBright}${MSG}${cClear}"
+}
+
+# print_info() {
+#     local SUMMARY="$1"
+#     local MSG="$2"
+
+#     echo -e "${cClear}[${cWhiteBold} ${SUMMARY} ${cClear}] ${cWhiteBright}${MSG}${cClear}"
+# }
+
 # -----------------------------------------------------------------------------
 
 __WORKDIR="$( dirname "$0" )"
 __FILTER="$1"
+
+# allow to receive a variable from the ENV, or fallback to use the WORKDIR
+PROJECTS_REPOSITORY="${PROJECTS_REPOSITORY:-${__WORKDIR}}"
 
 # -----------------------------------------------------------------------------
 
@@ -96,7 +134,7 @@ fetch_in_folder() {
 
 echo ""
 
-for f in "${__WORKDIR}"/*; do
+for f in "${PROJECTS_REPOSITORY}"/*; do
     [[ -d "$f" ]] || continue
     fetch_in_folder "$f"
 done
