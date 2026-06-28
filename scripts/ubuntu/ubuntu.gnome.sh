@@ -39,10 +39,10 @@ cWhite="\033[37m"
 cWhiteBrightBold="\033[1;97m"
 cWhiteBright="\033[97m"
 
-cBlackBold="\033[1;38m"
-cBlack="\033[38m"
-cBlackBrightBold="\033[1;98m"
-cBlackBright="\033[98m"
+cBlackBold="\033[1;30m"
+cBlack="\033[30m"
+cBlackBrightBold="\033[1;90m"
+cBlackBright="\033[90m"
 
 # -----------------------------------------------------------------------------
 

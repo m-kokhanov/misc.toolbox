@@ -4,6 +4,11 @@
 
 cClear="\033[0m"
 
+cRedBold="\033[1;31m"
+cRed="\033[31m"
+cRedBrightBold="\033[1;91m"
+cRedBright="\033[91m"
+
 cGreenBold="\033[1;32m"
 cGreen="\033[32m"
 cGreenBrightBold="\033[1;92m"
@@ -18,11 +23,6 @@ cBlueBold="\033[1;34m"
 cBlue="\033[34m"
 cBlueBrightBold="\033[1;94m"
 cBlueBright="\033[94m"
-
-cRedBold="\033[1;31m"
-cRed="\033[31m"
-cRedBrightBold="\033[1;91m"
-cRedBright="\033[91m"
 
 cMagentaBold="\033[1;35m"
 cMagenta="\033[35m"
