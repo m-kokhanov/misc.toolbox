@@ -122,10 +122,10 @@ print_info "INFO" "Git"
 echo ""
 
 link_file "$HOME/projects/misc.tools/git/.gitconfig" "$HOME/.gitconfig"
-link_file "$HOME/projects/misc.tools/scripts/git.setup.sh" "$HOME/tools.git-setup.sh"
-link_file "$HOME/projects/misc.tools/scripts/git.fetch-all.sh" "$HOME/tools.git-fetch.sh"
+link_file "$HOME/projects/misc.tools/scripts/git/git.setup.sh" "$HOME/tools.git-setup.sh"
+link_file "$HOME/projects/misc.tools/scripts/git/git.fetch-all.sh" "$HOME/tools.git-fetch.sh"
 
-link_file "$HOME/projects/misc.tools/scripts/git.fetch-all.sh" "$HOME/projects.repository/fetch-all.sh"
+link_file "$HOME/projects/misc.tools/scripts/git/git.fetch-all.sh" "$HOME/projects.repository/fetch-all.sh"
 
 # -----------------------------------------------------------------------------
 
