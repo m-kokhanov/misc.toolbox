@@ -152,11 +152,15 @@ echo ""
 echo -e "[ ${cYellowBrightBold}UTILS & SOFTWARE${cClear} ] Installing..."
 echo ""
 
+# utils
 install_package "mc htop tree xclip lm-sensors net-tools unzip zip"
 install_package "git wget curl gpg"
-install_package "gnome-tweaks" # [?] dconf-editor
-install_package "vlc ffmpeg"
 
+# apps
+install_package "gnome-tweaks" # [?] dconf-editor
+install_package "transmission vlc ffmpeg"
+
+# tools
 install_vagrant
 
 echo -e "[ ${cGreenBold}DONE${cClear} ]"
