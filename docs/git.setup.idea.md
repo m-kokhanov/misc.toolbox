@@ -1,3 +1,24 @@
+# Git Setup - Idea #1
+
+
+> `QUERY:` <br />
+> I need a small bash script (both for linux and mac), that will allow me to use: <br />
+> <br />
+> cat ~/profile.work.txt | git-setup.sh <br />
+> and it will set <br />
+> git config --local user.email "$email" <br />
+=> git config --local user.name "$name" <br />
+> <br />
+> so I could easily setup the local repository config, based on the inputs, and for different project, different credentials (I no > longer use --global config) <br />
+> <br />
+
+
+---
+
+
+# Response:
+
+
 Nice idea — this is a clean workflow 👍
 You can totally do this with a tiny, portable Bash script that works on **Linux + macOS**.
 
