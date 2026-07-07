@@ -1,3 +1,22 @@
+# Git Setup - Idea #2
+
+
+> `QUERY:`
+> I want to update the input values, the file contents for the profile info is: <br />
+> <br />
+> john doe <br />
+> j.doe@ex.com <br />
+> <br />
+> and if no file provided - I want to as the user to input the name and email in the terminal prompt <br />
+> <br />
+
+
+---
+
+
+# Response:
+
+
 Perfect — even cleaner 👌
 So the rules are now:
 
