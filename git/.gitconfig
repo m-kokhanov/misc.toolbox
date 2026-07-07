@@ -8,11 +8,12 @@
     wdiff = "diff --word-diff"
     diffc = "diff --cached"
     rl = "reflog --format='[ %cd ] %C(auto)%h %gD: %gs' --date=short"
-    logp = "log -p"
+    lp = "log -p"
     ll = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as%C(reset) %C(white)%s'"
     dl = "log --pretty='format:%C(yellow bold)%h %C(green bold)%as%C(auto)%d%C(reset) %C(white)%s'"
     lln = "ll --name-status"
     tree = "ll --graph"
+    logp = "lp"
     oneline = "ll"
     oneline-ns = "lln'"
 
