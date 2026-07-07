@@ -109,7 +109,8 @@ echo ""
 print_info "INFO" "Tools"
 echo ""
 
-link_file "$HOME/projects/misc.tools/scripts/ubuntu/ubuntu.path.gitbranch" "$HOME/.bash_gitbranch"
+link_file "$HOME/projects/misc.tools/scripts/ubuntu/ubuntu.bash.titlek" "$HOME/.bash_wintitle"
+link_file "$HOME/projects/misc.tools/scripts/ubuntu/ubuntu.bash.gitbranch" "$HOME/.bash_gitbranch"
 
 link_file "$HOME/projects/misc.tools/scripts/tools/extract.sh" "$HOME/tools.extract.sh"
 link_file "$HOME/projects/misc.tools/scripts/tools/move.sh" "$HOME/tools.move.sh"
