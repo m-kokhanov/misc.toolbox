@@ -135,10 +135,10 @@ read ahead behind < <(git rev-list --left-right --count HEAD..."$target")
 echo -e "On branch ${cGreenBold}$current_branch${cClear}"
 
 if (( ahead == 0 && behind == 0 )); then
-    echo -e "Your branch is up to date with ${cYellowBold}'$target'${cClear}."
+    echo -e "Your branch is up to date with ${cGreenBold}'$target'${cClear}."
 elif (( ahead > 0 && behind == 0 )); then
     plural=$([[ $ahead -eq 1 ]] && echo "" || echo "s")
-    echo -e "Your branch is ahead of ${cGreenBrightBold}'$target'${cClear} by $ahead commit$plural."
+    echo -e "Your branch is ahead of ${cYellowBrightBold}'$target'${cClear} by $ahead commit$plural."
     echo '  (use "git push" to publish your local commits)'
 elif (( ahead == 0 && behind > 0 )); then
     plural=$([[ $behind -eq 1 ]] && echo "" || echo "s")
