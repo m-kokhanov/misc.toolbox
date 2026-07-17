@@ -2,6 +2,10 @@
 
 # -----------------------------------------------------------------------------
 
+set -euo pipefail
+
+# -----------------------------------------------------------------------------
+
 __WORKDIR="$( pwd )"
 __SCRIPTDIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -18,10 +22,13 @@ fi
 # -----------------------------------------------------------------------------
 
 echo ""
+
 print_info "INFO" "Message ..."
+print_debug "DEBUG" "Message ..."
 print_warn "WARN" "Warning message..."
 print_error "FAIL" "Something failed... "
 print_success "DONE" "Finished processing..."
+
 echo ""
 
 # -----------------------------------------------------------------------------

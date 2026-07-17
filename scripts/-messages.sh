@@ -7,10 +7,13 @@ print_message() {
 }
 
 print_success() {
-    local SUMMARY="${cClear}[${cGreenBrightBold} ${1} ${cClear}]"
-    local MSG="${cGreenBright}${2}${cClear}"
+    local topic="${1:-}"
+    local message="${2:-}"
 
-    if [ "" == "$1" ]; then
+    local SUMMARY="${cClear}[${cGreenBrightBold} ${topic} ${cClear}]"
+    local MSG="${cGreenBright}${message}${cClear}"
+
+    if [ "" == "$topic" ]; then
         print_message "$MSG"
         return
     fi
@@ -19,8 +22,11 @@ print_success() {
 }
 
 print_error() {
-    local SUMMARY="${cClear}[${cRedBrightBold} ${1} ${cClear}]"
-    local MSG="${cRedBright}${2}${cClear}"
+    local topic="${1:-}"
+    local message="${2:-}"
+
+    local SUMMARY="${cClear}[${cRedBrightBold} ${topic} ${cClear}]"
+    local MSG="${cRedBright}${message}${cClear}"
 
     if [ "" == "$1" ]; then
         print_message "$MSG"
@@ -31,8 +37,11 @@ print_error() {
 }
 
 print_warn() {
-    local SUMMARY="${cClear}[${cYellowBrightBold} ${1} ${cClear}]"
-    local MSG="${cYellowBright}${2}${cClear}"
+    local topic="${1:-}"
+    local message="${2:-}"
+
+    local SUMMARY="${cClear}[${cYellowBrightBold} ${topic} ${cClear}]"
+    local MSG="${cYellowBright}${message}${cClear}"
 
     if [ "" == "$1" ]; then
         print_message "$MSG"
@@ -43,8 +52,11 @@ print_warn() {
 }
 
 print_info() {
-    local SUMMARY="${cClear}[${cWhiteBrightBold} ${1} ${cClear}]"
-    local MSG="${cWhiteBright}${2}${cClear}"
+    local topic="${1:-}"
+    local message="${2:-}"
+
+    local SUMMARY="${cClear}[${cWhiteBrightBold} ${topic} ${cClear}]"
+    local MSG="${cWhiteBright}${message}${cClear}"
 
     if [ "" == "$1" ]; then
         print_message "$MSG"
@@ -55,8 +67,11 @@ print_info() {
 }
 
 print_debug() {
-    local SUMMARY="${cClear}[${cMagentaBrightBold} ${1} ${cClear}]"
-    local MSG="${cMagentaBright}${2}${cClear}"
+    local topic="${1:-}"
+    local message="${2:-}"
+
+    local SUMMARY="${cClear}[${cMagentaBrightBold} ${topic} ${cClear}]"
+    local MSG="${cMagentaBright}${message}${cClear}"
 
     if [ "" == "$1" ]; then
         print_message "$MSG"
