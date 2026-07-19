@@ -21,10 +21,14 @@ fi
 
 # -----------------------------------------------------------------------------
 
-__FILTER="${1:-}"
+# optional projects filter
+FILTER="${1:-}"
+
+# the folder where script was invoked from
+WORKDIR="$( cd -- "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # allow to receive a variable from the ENV, or fallback to use the WORKDIR
-PROJECTS_REPOSITORY="${PROJECTS_REPOSITORY:-${__WORKDIR}}"
+PROJECTS_REPOSITORY="${PROJECTS_REPOSITORY:-${WORKDIR}}"
 
 # -----------------------------------------------------------------------------
 
@@ -52,7 +56,7 @@ fetch_in_folder() {
 
     for f in "${workdir}"/*;
     do
-        filter_by "$__FILTER" "$f" || continue
+        filter_by "$FILTER" "$f" || continue
 
         if [ -d "$f" ];
         then
