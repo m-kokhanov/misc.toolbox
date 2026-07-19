@@ -77,10 +77,10 @@ install_vagrant() {
 
 # -----------------------------------------------------------------------------
 
-echo -e "${cGrayBold}This setup requires administrator privileges (sudo).${cClear}"
+echo -e "${cBlackBright}This setup requires administrator privileges (sudo).${cClear}"
 
 if ! sudo -v; then
-    print_failure "FAILURE" "Failed to obtain sudo access. Exiting..."
+    print_error "FAILURE" "Failed to obtain sudo access. Exiting..."
     exit 1
 fi
 
