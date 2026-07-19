@@ -20,13 +20,39 @@ if [ -f "$__SCRIPTDIR/../-messages.sh" ]; then
 fi
 
 # -----------------------------------------------------------------------------
+
+DEBUG=true
+
+# -----------------------------------------------------------------------------
+
+g_configure() {
+    local schema="${1:-""}"
+    local key="${2:-""}"
+    local type="${3:-""}"
+    local value="${4:-""}"
+
+    local current=$( defaults read "${schema}" "${key}" )
+
+    echo -e "  ${cYellowBright}${schema}${cClear} ${cYellowBrightBold}${key} ${cGreen}${current}${cClear}"
+
+    if [[ true = "$DEBUG" ]]; then
+        print_debug "" "  defaults write $schema $key ${type} ${value}"
+    else
+        defaults write ${schema} ${key} ${type} "${value}"
+    fi
+}
+
+# -----------------------------------------------------------------------------
 # KEYBOARD & TRACKPAD
 # -----------------------------------------------------------------------------
 
 echo -e "[ ${cGreenBright}KEYBOARD${cClear} ] keypress delay & repeat";
 
-defaults write -g InitialKeyRepeat -int 15
-defaults write -g KeyRepeat -int 2
+g_configure -g InitialKeyRepeat -int 15
+
+# -g and NSGlobalDomain - are interchangable
+g_configure -g InitialKeyRepeat -int 15
+g_configure -g KeyRepeat -int 2
 
 killall cfprefsd 2>/dev/null || true
 
@@ -36,16 +62,16 @@ killall cfprefsd 2>/dev/null || true
 
 echo -e "[ ${cGreenBright}DOCK${cClear} ] auto-hide, short delay";
 
-defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock autohide-delay -float 0.01
-defaults write com.apple.dock autohide-time-modifier -float 0.12
+g_configure com.apple.dock autohide -bool true
+g_configure com.apple.dock autohide-delay -float 0.01
+g_configure com.apple.dock autohide-time-modifier -float 0.12
 
 # window hide effect - "scale"
-defaults write com.apple.dock mineffect -string scale
+g_configure com.apple.dock mineffect -string scale
 
 # duration of desktop switching animation reduction
-# defaults write com.apple.dock expose-animation-duration -float 0.1
-defaults write com.apple.dock expose-animation-duration -float 0.12
+# g_configure com.apple.dock expose-animation-duration -float 0.1
+g_configure com.apple.dock expose-animation-duration -float 0.12
 
 killall Dock 2>/dev/null || true
 
