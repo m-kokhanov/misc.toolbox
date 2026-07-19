@@ -2,42 +2,22 @@
 
 # -----------------------------------------------------------------------------
 
-cClear="\033[0m"
+set -euo pipefail
 
-cGreenBold="\033[1;32m"
-cGreen="\033[32m"
-cGreenBrightBold="\033[1;92m"
-cGreenBright="\033[92m"
+# -----------------------------------------------------------------------------
 
-cYellowBold="\033[1;33m"
-cYellow="\033[33m"
-cYellowBrightBold="\033[1;93m"
-cYellowBright="\033[93m"
+__WORKDIR="$( pwd )"
+__SCRIPTDIR="$( cd -- "$( dirname -- "$( readlink -f -- "${BASH_SOURCE[0]}" )" )" && pwd )"
 
-cBlueBold="\033[1;34m"
-cBlue="\033[34m"
-cBlueBrightBold="\033[1;94m"
-cBlueBright="\033[94m"
+# -----------------------------------------------------------------------------
 
-cRedBold="\033[1;31m"
-cRed="\033[31m"
-cRedBrightBold="\033[1;91m"
-cRedBright="\033[91m"
+if [ -f "$__SCRIPTDIR/../-colors.sh" ]; then
+    . $__SCRIPTDIR/../-colors.sh
+fi
 
-cMagentaBold="\033[1;35m"
-cMagenta="\033[35m"
-cMagentaBrightBold="\033[1;95m"
-cMagentaBright="\033[95m"
-
-cCyanBold="\033[1;36m"
-cCyan="\033[36m"
-cCyanBrightBold="\033[1;96m"
-cCyanBright="\033[96m"
-
-cWhiteBold="\033[1;37m"
-cWhite="\033[37m"
-cWhiteBrightBold="\033[1;97m"
-cWhiteBright="\033[97m"
+if [ -f "$__SCRIPTDIR/../-messages.sh" ]; then
+    . $__SCRIPTDIR/../-messages.sh
+fi
 
 # -----------------------------------------------------------------------------
 

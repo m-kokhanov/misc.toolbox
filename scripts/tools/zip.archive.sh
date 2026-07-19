@@ -2,31 +2,24 @@
 
 # -----------------------------------------------------------------------------
 
-cClear="\033[0m"
-
-cGreenBold="\033[1;32m"
-cGreen="\033[32m"
-cGreenBrightBold="\033[1;92m"
-cGreenBright="\033[92m"
-
-cYellowBold="\033[1;33m"
-cYellow="\033[33m"
-cYellowBrightBold="\033[1;93m"
-cYellowBright="\033[93m"
-
-cBlueBold="\033[1;34m"
-cBlue="\033[34m"
-cBlueBrightBold="\033[1;94m"
-cBlueBright="\033[94m"
-
-cRedBold="\033[1;31m"
-cRed="\033[31m"
-cRedBrightBold="\033[1;91m"
-cRedBright="\033[91m"
+set -euo pipefail
 
 # -----------------------------------------------------------------------------
 
-set -euo pipefail
+__WORKDIR="$( pwd )"
+__SCRIPTDIR="$( cd -- "$( dirname -- "$( readlink -f -- "${BASH_SOURCE[0]}" )" )" && pwd )"
+
+# -----------------------------------------------------------------------------
+
+if [ -f "$__SCRIPTDIR/../-colors.sh" ]; then
+    . $__SCRIPTDIR/../-colors.sh
+fi
+
+if [ -f "$__SCRIPTDIR/../-messages.sh" ]; then
+    . $__SCRIPTDIR/../-messages.sh
+fi
+
+# -----------------------------------------------------------------------------
 
 # archive.sh
 # Create a ZIP archive without compression (-0)
