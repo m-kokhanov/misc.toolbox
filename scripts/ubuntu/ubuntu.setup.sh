@@ -101,5 +101,11 @@ install_package "transmission vlc ffmpeg"
 # tools
 install_vagrant
 
-echo -e "[ ${cGreenBold}DONE${cClear} ]"
+# -----------------------------------------------------------------------------
+
+print_success "DONE"
 echo ""
+
+# -----------------------------------------------------------------------------
+
+exit 0

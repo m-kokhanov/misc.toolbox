@@ -119,3 +119,5 @@ echo -e "[ ${cGreenBrightBold}DONE${cClear} ] ${cGreen}Local git config was upda
 echo ""
 
 # -----------------------------------------------------------------------------
+
+exit 0

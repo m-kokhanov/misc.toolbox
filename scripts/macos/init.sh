@@ -50,3 +50,5 @@ defaults write com.apple.dock expose-animation-duration -float 0.12
 killall Dock 2>/dev/null || true
 
 # -----------------------------------------------------------------------------
+
+exit 0
