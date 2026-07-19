@@ -44,12 +44,17 @@ g_configure() {
 }
 
 # -----------------------------------------------------------------------------
+
+echo ""
+print_warn "MACOS" "Setup..."
+echo ""
+
+# -----------------------------------------------------------------------------
 # KEYBOARD & TRACKPAD
 # -----------------------------------------------------------------------------
 
-echo -e "[ ${cGreenBright}KEYBOARD${cClear} ] keypress delay & repeat";
-
-g_configure -g InitialKeyRepeat -int 15
+print_info "INFO" "Keyboard & Trackpad"
+echo ""
 
 # -g and NSGlobalDomain - are interchangable
 g_configure -g InitialKeyRepeat -int 15
@@ -57,24 +62,43 @@ g_configure -g KeyRepeat -int 2
 
 killall cfprefsd 2>/dev/null || true
 
+echo ""
+
 # -----------------------------------------------------------------------------
 # enable DOCK auto-hide, and set the animations to minimal values
 # -----------------------------------------------------------------------------
 
-echo -e "[ ${cGreenBright}DOCK${cClear} ] auto-hide, short delay";
+print_info "INFO" "Dock auto-hide, short delay ..."
+echo ""
 
 g_configure com.apple.dock autohide -bool true
 g_configure com.apple.dock autohide-delay -float 0.01
 g_configure com.apple.dock autohide-time-modifier -float 0.12
 
+echo ""
+
+# -----------------------------------------------------------------------------
+
+print_info "INFO" "Window minify effect ..."
+echo ""
+
 # window hide effect - "scale"
 g_configure com.apple.dock mineffect -string scale
+
+echo ""
+
+# -----------------------------------------------------------------------------
+
+print_info "INFO" "Expose ..."
+echo ""
 
 # duration of desktop switching animation reduction
 # g_configure com.apple.dock expose-animation-duration -float 0.1
 g_configure com.apple.dock expose-animation-duration -float 0.12
 
 killall Dock 2>/dev/null || true
+
+echo ""
 
 # -----------------------------------------------------------------------------
 
