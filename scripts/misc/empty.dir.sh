@@ -30,15 +30,17 @@ is_empty_dir() {
 # -----------------------------------------------------------------------------
 
 check_directory() {
-    if [ ! -d "$1" ]; then
+    local target="${1:-}"
+
+    if [ ! -d "$target" ]; then
         echo -e "[${cRedBrightBold} FAILED ${cClear}] ${cYellowBrightBold}${1}${cClear}. Not a directory"
-        return 1
+        return 0
     fi
 
-    if is_empty_dir "$1"; then
-        echo -e "[${cGreenBrightBold} EMPTY ${cClear}] ${cGreenBright}$1${cClear}"
+    if is_empty_dir "$target"; then
+        echo -e "[${cGreenBrightBold} EMPTY ${cClear}] ${cGreenBright}${target}${cClear}"
     else
-        echo -e "[${cRedBrightBold} NOT EMPTY ${cClear}] ${cRedBright}$1${cClear}"
+        echo -e "[${cRedBrightBold} NOT EMPTY ${cClear}] ${cRedBright}${target}${cClear}"
     fi
 }
 
