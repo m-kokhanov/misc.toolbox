@@ -6,17 +6,18 @@ set -euo pipefail
 
 # -----------------------------------------------------------------------------
 
-__WORKDIR="$( pwd )"
-__SCRIPTDIR="$( cd -- "$( dirname -- "$( readlink -f -- "${BASH_SOURCE[0]}" )" )" && pwd )"
+__WORK_DIR="$( pwd )"
+__INVOCATION_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" && pwd )"
+__SCRIPT_DIR="$( cd -- "$( dirname -- "$( readlink -f -- "${BASH_SOURCE[0]}" )" )" && pwd )"
 
 # -----------------------------------------------------------------------------
 
-if [ -f "$__SCRIPTDIR/../-colors.sh" ]; then
-    . $__SCRIPTDIR/../-colors.sh
+if [ -f "$__SCRIPT_DIR/../-colors.sh" ]; then
+    . $__SCRIPT_DIR/../-colors.sh
 fi
 
-if [ -f "$__SCRIPTDIR/../-messages.sh" ]; then
-    . $__SCRIPTDIR/../-messages.sh
+if [ -f "$__SCRIPT_DIR/../-messages.sh" ]; then
+    . $__SCRIPT_DIR/../-messages.sh
 fi
 
 # -----------------------------------------------------------------------------
