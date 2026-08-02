@@ -6,6 +6,10 @@ set -euo pipefail
 
 # -----------------------------------------------------------------------------
 
+DEBUG=${DEBUG:-true}
+
+# -----------------------------------------------------------------------------
+
 __WORK_DIR="$( pwd )"
 __INVOCATION_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" && pwd )"
 __SCRIPT_DIR="$( cd -- "$( dirname -- "$( readlink -f -- "${BASH_SOURCE[0]}" )" )" && pwd )"
@@ -22,18 +26,26 @@ fi
 
 # -----------------------------------------------------------------------------
 
-DEBUG=true
-
-# -----------------------------------------------------------------------------
-
-debug_print() {
-    echo -e "${cClear}[${cWhiteBrightBold} CMD ${cClear}]: ${cWhiteBright}$@${cClear}"
-}
-
 print_subject() {
     local topic=$1;
     local message=$2;
     echo -e "${cClear}[ ${cYellowBright}${topic}${cClear} ]: ${cGreen}${message}${cBlueBright}"
+}
+
+# -----------------------------------------------------------------------------
+
+update_package_metadata() {
+    print_subject "UPDATING" "Packages metadata & database"
+
+    if [[ true = "${DEBUG}" ]];
+    then
+        print_debug "DBG" "sudo apt update"
+    else
+        sudo apt update
+    fi
+
+    print_success "FINISHED"
+    echo ""
 }
 
 # -----------------------------------------------------------------------------
@@ -45,35 +57,32 @@ install_package() {
 
     if [[ true = "$DEBUG" ]];
     then
-        debug_print sudo apt-get install y $_package
+        print_debug "DBG" "sudo apt-get install y $_package"
     else
         sudo apt-get install -y $_package
     fi
 
     print_success "FINISHED"
+    echo ""
 }
 
 # -----------------------------------------------------------------------------
 
 install_vagrant() {
-    [[ true = "${DEBUG}" ]] && return 0
-
-    print_subject "PREPARING" "vagrant installation..."
-
+    # print_subject "PREPARING" "vagrant installation..."
     # wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
     # echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-    sudo apt update
-    echo ""
 
     install_package "vagrant"
 
-    local result=$( vagrant -v 2>&1 1>/dev/tty )
+    local result=$( vagrant -v >/dev/null )
+    local res=$?
 
-    if [ $? -ne 0 ]; then
-        echo "${cRed}$result${cClear}"
+    if [[ 0 -ne $res ]];
+    then
+        print_error "FAILED" "{ $res }"
+        echo ""
     fi
-
-    print_success "FINISHED"
 }
 
 # -----------------------------------------------------------------------------
@@ -90,6 +99,9 @@ fi
 echo ""
 echo -e "[ ${cYellowBrightBold}UTILS & SOFTWARE${cClear} ] Installing..."
 echo ""
+
+# packages metadata & info
+update_package_metadata
 
 # utils
 install_package "mc htop tree xclip lm-sensors net-tools unzip zip"
