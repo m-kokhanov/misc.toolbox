@@ -62,6 +62,15 @@ fetch_in_folder() {
         if [ -d "$f" ];
         then
             local dName=$( basename "$f" )
+
+            if [ -f "${f}.skip" ]; then
+                echo -e "[ ${cMagentaBrightBold}FETCHING${cClear} ]: ${cMagentaBrightBold}${dName}${cClear}"
+                echo -e "  ${cMagentaBright}skipping ...${cClear}"
+                echo ""
+
+                continue
+            fi
+
             echo -e "[ ${cYellowBright}FETCHING${cClear} ]: ${cYellowBrightBold}${dName}${cClear}"
             echo -e "${cClear}  in: ${cWhite}${f}/${cBlue}"
 
@@ -79,6 +88,15 @@ echo ""
 
 for f in "${PROJECTS_REPOSITORY}"/*; do
     [[ -d "$f" ]] || continue
+
+    if [ -f "${f}.skip" ]; then
+        echo -e "[ ${cMagentaBrightBold}PROCESSING${cClear} ]: ${cMagentaBrightBold}$( basename "$f" )${cClear}"
+        echo -e "  ${cMagentaBright}skipping ...${cClear}"
+        echo ""
+
+        continue
+    fi
+
     fetch_in_folder "$f"
 done
 
