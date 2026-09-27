@@ -57,7 +57,7 @@ if [ "$(uname -s)" = "Linux" ]; then
     echo ""
 
 
-    link_file "${SCRIPT_DIR}/ubuntu/ubuntu.bash.titlek" "$HOME/.bash_wintitle"
+    link_file "${SCRIPT_DIR}/ubuntu/ubuntu.bash.title" "$HOME/.bash_wintitle"
     link_file "${SCRIPT_DIR}/ubuntu/ubuntu.bash.gitbranch" "$HOME/.bash_gitbranch"
 fi
 
