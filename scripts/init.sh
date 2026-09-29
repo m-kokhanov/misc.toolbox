@@ -33,6 +33,7 @@ is_working_symlink() {
 link_file() {
     local src="$1"
     local dst="$2"
+    local is_sudo="${3:-}"
 
     if [ -L "$dst" ];
     then
@@ -41,8 +42,21 @@ link_file() {
 
     echo -e "  creating: ${cYellowBright}$( basename $dst )${cClear}"
 
-    ln -s "$src" "$dst"
+    if [ "x-${is_sudo}" = "x-sudo" ]; then
+        sudo ln -s "$src" "$dst"
+    else
+        ln -s "$src" "$dst"
+    fi
 }
+
+# -----------------------------------------------------------------------------
+
+echo -e "${cBlackBright}This setup requires administrator privileges (sudo).${cClear}"
+
+if ! sudo -v; then
+    print_error "FAILURE" "Failed to obtain sudo access. Exiting..."
+    exit 1
+fi
 
 # -----------------------------------------------------------------------------
 
@@ -68,13 +82,16 @@ print_info "INFO" "Tools"
 echo ""
 
 link_file "${SCRIPT_DIR}/tools/extract.sh" "$HOME/tools.extract.sh"
-link_file "${SCRIPT_DIR}/tools/move.sh" "$HOME/tools.move.sh"
-link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "$HOME/tools.archive.sh"
+link_file "${SCRIPT_DIR}/tools/extract.sh" "/usr/local/bin/extract" "sudo"
 
-link_file "${SCRIPT_DIR}/tools/extract.sh" "/usr/local/bin/extract"
-link_file "${SCRIPT_DIR}/tools/move.sh" "/usr/local/bin/move"
-link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "/usr/local/bin/archive"
-link_file "${SCRIPT_DIR}/tools/caffeinate.sh" "/usr/local/bin/keepalive"
+link_file "${SCRIPT_DIR}/tools/move.sh" "$HOME/tools.move.sh"
+link_file "${SCRIPT_DIR}/tools/move.sh" "/usr/local/bin/move" "sudo"
+
+link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "$HOME/tools.archive.sh"
+link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "/usr/local/bin/archive" "sudo"
+
+link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "$HOME/tools.caffeinate.sh"
+link_file "${SCRIPT_DIR}/tools/caffeinate.sh" "/usr/local/bin/keepalive" "sudo"
 
 # -----------------------------------------------------------------------------
 
@@ -85,7 +102,11 @@ echo ""
 link_file "${SCRIPT_DIR}/../git/.gitconfig" "$HOME/.gitconfig"
 
 link_file "${SCRIPT_DIR}/git/git.status.sh" "$HOME/tools.git-status.sh"
+link_file "${SCRIPT_DIR}/git/git.status.sh" "/usr/local/bin/git-status" "sudo"
+
 link_file "${SCRIPT_DIR}/git/git.setup.sh" "$HOME/tools.git-setup.sh"
+link_file "${SCRIPT_DIR}/git/git.setup.sh" "/usr/local/bin/git-setup" "sudo"
+
 link_file "${SCRIPT_DIR}/git/git.fetch-all.sh" "$HOME/tools.git-fetch.sh"
 
 echo ""
