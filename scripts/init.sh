@@ -71,6 +71,11 @@ link_file "${SCRIPT_DIR}/tools/extract.sh" "$HOME/tools.extract.sh"
 link_file "${SCRIPT_DIR}/tools/move.sh" "$HOME/tools.move.sh"
 link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "$HOME/tools.archive.sh"
 
+link_file "${SCRIPT_DIR}/tools/extract.sh" "/usr/local/bin/extract"
+link_file "${SCRIPT_DIR}/tools/move.sh" "/usr/local/bin/move"
+link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "/usr/local/bin/archive"
+link_file "${SCRIPT_DIR}/tools/caffeinate.sh" "/usr/local/bin/keepalive"
+
 # -----------------------------------------------------------------------------
 
 echo ""
