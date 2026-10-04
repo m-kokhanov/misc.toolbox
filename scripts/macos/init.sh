@@ -65,6 +65,54 @@ killall cfprefsd 2>/dev/null || true
 echo ""
 
 # -----------------------------------------------------------------------------
+# Finder
+# -----------------------------------------------------------------------------
+
+print_info "INFO" "Finder.."
+
+# Show hidden files
+g_configure com.apple.finder AppleShowAllFiles -bool true
+
+# Keep folders at the top when sorting by name
+g_configure com.apple.finder _FXSortFoldersFirst -bool true
+
+# Show all filename extensions (redundant but harmless if already set)
+g_configure NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Show the path bar (bottom of Finder window)
+g_configure com.apple.finder ShowPathbar -bool true
+
+# Show the status bar (bottom of Finder window)
+# Displays item count, available disk space, etc.
+g_configure com.apple.finder ShowStatusBar -bool true
+
+# Global
+g_configure NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Keep folders at the top when sorting by name
+g_configure com.apple.finder _FXSortFoldersFirst -bool true
+
+# Search the current folder by default instead of the entire Mac
+# g_configure com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Disable warning when changing a file extension
+g_configure com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Show external disks on the desktop
+# g_configure com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+
+# Show removable media on the desktop (USB drives, SD cards)
+# g_configure com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+# Show connected servers on the desktop
+# g_configure com.apple.finder ShowMountedServersOnDesktop -bool true
+
+# Restart Finder to apply changes
+killall Finder 2>/dev/null || true
+
+echo ""
+
+# -----------------------------------------------------------------------------
 # enable DOCK auto-hide, and set the animations to minimal values
 # -----------------------------------------------------------------------------
 
@@ -94,7 +142,7 @@ echo ""
 
 # duration of desktop switching animation reduction
 # g_configure com.apple.dock expose-animation-duration -float 0.1
-g_configure com.apple.dock expose-animation-duration -float 0.12
+g_configure com.apple.dock expose-animation-duration -float 0.05
 
 killall Dock 2>/dev/null || true
 
