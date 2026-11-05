@@ -23,12 +23,17 @@ fi
 # -----------------------------------------------------------------------------
 
 # archive.sh
-# Create a ZIP archive without compression (-0)
+# Create a ZIP archive, stored without compression (-0) by default.
+# Set COMPRESS=<0-9> to choose the compression level.
 # Works on macOS and Linux (requires `zip`)
 
 usage() {
   echo "Usage:"
-  echo "  $0 <target-file-or-folder> [output.zip]"
+  echo "  [COMPRESS=<0-9>] $0 <target-file-or-folder> [output.zip]"
+  echo ""
+  echo "Environment:"
+  echo "  COMPRESS=<0-9>   compression level, passed to zip as -<level>"
+  echo "                   0 = store only (default), 1 = fastest, 9 = best"
   exit 1
 }
 
@@ -37,6 +42,15 @@ usage() {
 
 TARGET="$1"
 OUTPUT="${2:-}"
+
+# --- Compression ---
+COMPRESS="${COMPRESS:-0}"
+if [[ ! "$COMPRESS" =~ ^[0-9]$ ]]; then
+  echo "Error: COMPRESS must be a single digit 0-9, got: $COMPRESS"
+  echo ""
+  usage
+fi
+ZIP_LEVEL="-$COMPRESS"
 
 # --- Validate target ---
 if [[ ! -e "$TARGET" ]]; then
@@ -75,7 +89,7 @@ if [[ -d "$TARGET" ]]; then
   (
     cd "$TARGET"
 
-    zip -r -0 "$OUTPUT" . \
+    zip -r "$ZIP_LEVEL" "$OUTPUT" . \
       $(printf -- " -x %q" "${EXCLUDES[@]}")
   )
 else
@@ -83,13 +97,13 @@ else
   (
     cd "$TARGET_DIR"
 
-    zip -0 "$OUTPUT" "$TARGET_NAME" \
+    zip "$ZIP_LEVEL" "$OUTPUT" "$TARGET_NAME" \
       $(printf -- " -x %q" "${EXCLUDES[@]}")
   )
 fi
 
 echo ""
-echo -e "${cYellowBrightBold}Created archive:${cClear}"
+echo -e "${cYellowBrightBold}Created archive:${cClear} (compression level: $COMPRESS)"
 echo "  $OUTPUT"
 echo ""
 
