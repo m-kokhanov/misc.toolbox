@@ -37,7 +37,11 @@ link_file() {
 
     if [ -L "$dst" ];
     then
-        unlink "$dst"
+        if [ "x-${is_sudo}" = "x-sudo" ]; then
+            sudo unlink "$dst"
+        else
+            unlink "$dst"
+        fi
     fi
 
     echo -e "  creating: ${cYellowBright}$( basename $dst )${cClear}"
@@ -89,6 +93,9 @@ link_file "${SCRIPT_DIR}/tools/move.sh" "/usr/local/bin/move" "sudo"
 
 link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "$HOME/tools.archive.sh"
 link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "/usr/local/bin/archive" "sudo"
+
+link_file "${SCRIPT_DIR}/tools/inloop.sh" "$HOME/tools.inloop.sh"
+link_file "${SCRIPT_DIR}/tools/inloop.sh" "/usr/local/bin/archive" "sudo"
 
 link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "$HOME/tools.caffeinate.sh"
 link_file "${SCRIPT_DIR}/tools/caffeinate.sh" "/usr/local/bin/keepalive" "sudo"
