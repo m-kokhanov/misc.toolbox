@@ -35,8 +35,7 @@ link_file() {
     local dst="$2"
     local is_sudo="${3:-}"
 
-    if [ -L "$dst" ];
-    then
+    if [ -L "$dst" ]; then
         if [ "x-${is_sudo}" = "x-sudo" ]; then
             sudo unlink "$dst"
         else
@@ -95,7 +94,7 @@ link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "$HOME/tools.archive.sh"
 link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "/usr/local/bin/archive" "sudo"
 
 link_file "${SCRIPT_DIR}/tools/inloop.sh" "$HOME/tools.inloop.sh"
-link_file "${SCRIPT_DIR}/tools/inloop.sh" "/usr/local/bin/archive" "sudo"
+link_file "${SCRIPT_DIR}/tools/inloop.sh" "/usr/local/bin/inloop" "sudo"
 
 link_file "${SCRIPT_DIR}/tools/zip.archive.sh" "$HOME/tools.caffeinate.sh"
 link_file "${SCRIPT_DIR}/tools/caffeinate.sh" "/usr/local/bin/keepalive" "sudo"
