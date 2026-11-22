@@ -37,6 +37,21 @@ to_seconds() {
 	echo "${duration}s"
 }
 
+to_number_seconds() {
+	local duration="$1"
+
+	local unit="${duration: -1}"
+	local value="${duration%?}"
+
+	case "$unit" in
+		s) duration=$(( value * 1 )) ;;
+		m) duration=$(( value * 60 )) ;;
+		h) duration=$(( value * 3600 )) ;;
+	esac
+
+	echo "${duration}"
+}
+
 # -----------------------------------------------------------------------------
 
 _DELAY="${1}"
@@ -55,8 +70,14 @@ while true; do
 
 	echo ""
 	print_message "----------------------------------------------------------"
+	print_warn "FINISHED AT" ": $(date '+%Y-%m-%d %H:%M:%S')"
+	print_message "----------------------------------------------------------"
 	print_warn "DONE" "Run: { $_CYCLE } finished..."
-	print_warn "INFO" "Next run in "$_DELAY" ( $( to_seconds "$_DELAY" ) ) ..."
+
+	_DELAY_SECONSS="$( to_number_seconds "$_DELAY" )"
+	_NEXT_TIMESTAMP=$(($(date +%s) + _DELAY_SECONSS))
+
+	print_warn "INFO" "Next run in "$_DELAY" ( $( to_seconds "$_DELAY" ) ) expected at: ${cYellowBrightBold}$(date -r "$_NEXT_TIMESTAMP" '+%Y-%m-%d %H:%M:%S')${cClear}"
 	echo ""
 
  	sleep "$( to_seconds "$_DELAY" )"
